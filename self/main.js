@@ -35,20 +35,29 @@ function route(req, res) {
 	    return function(prov){
 		var isText = !obj.firstWasVar
 		
-	    var ltot = obj.vars.length+obj.texts.length;
-var ans = ""
-	    for (var i=0; i<ltot; i++){
-		var dex = (i - i%2)/2 //integer div 
-		if (isText){
-		    ans+= obj.texts[dex]
-		} else {
-		    ans += prov[obj.vars[dex]]()
+		var ltot = obj.vars.length+obj.texts.length;
+		var ans = ""
+		for (var i=0; i<ltot; i++){
+		    var dex = (i - i%2)/2 //integer div 
+		    if (isText){
+			ans += obj.texts[dex]
+		    } else {
+			ans += prov[obj.vars[dex]]()
+		    }
+		    isText = !isText
 		}
-		isText = !isText
-	    }
-	    return ans
-	}}
+		return ans
+	    }}
 
+	function doit(mold, getProv){
+	    if (mold.vars.length == 0)
+		return mold.texts[0];
+	    else {
+		layoutFunctor(mold)
+		(function (){
+		    return getProv().subs[
+	    }
+		
 	res.end(layoutFunctor(ax)(ider(ax)))
 	return
 	

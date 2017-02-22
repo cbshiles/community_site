@@ -26,13 +26,17 @@ function route(req, res) {
 
 
 	function ider(obj) {
-	    return { varpar: function(){return obj.subs.par.texts[0]}}
+	    return {
+		vars: { varpar: function()
+			{return layoutFunctor(obj.subs.par)(null)}
+		      },
+		subs: {}
+	    }
 	}
-
-
 	
 	function layoutFunctor(obj){
 	    return function(prov){
+		
 		var isText = !obj.firstWasVar
 		
 		var ltot = obj.vars.length+obj.texts.length;
@@ -42,25 +46,23 @@ function route(req, res) {
 		    if (isText){
 			ans += obj.texts[dex]
 		    } else {
-			ans += prov[obj.vars[dex]]()
+			ans += prov.vars[obj.vars[dex]]()
 		    }
 		    isText = !isText
 		}
 		return ans
 	    }}
 
-	function doit(mold, getProv){
+	function doit(mold, prov){
 	    if (mold.vars.length == 0)
 		return mold.texts[0];
 	    else {
-		layoutFunctor(mold)
-		(function (){
-		    return getProv().subs[
+		return layoutFunctor(mold)(prov)
 	    }
-		
-	res.end(layoutFunctor(ax)(ider(ax)))
+	}
+	    
+	res.end(doit(ax, ider(ax)))
 	return
-	
     }
     
     if (typeof response !== 'undefined')

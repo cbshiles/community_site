@@ -34,7 +34,7 @@ function route(req, res) {
 	    }
 	}
 	
-	function layoutFunctor(obj){
+	function moldFunctor(obj){
 	    return function(prov){
 		
 		var isText = !obj.firstWasVar

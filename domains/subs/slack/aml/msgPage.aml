@@ -1,0 +1,63 @@
+!DOCTYPE~ html[]
+
+html<
+head< 
+title<SLACK>
+script[type="text/javascript" src="jquery-3.1.1.js"]<>
+script[type="text/javascript"]<|
+
+    function errFunc(err) {
+        console.log("Post error!");
+        console.log(err);
+    }
+
+function connectSuccess(){
+;//just do a refresh
+}
+
+function flip(str){
+    return str.split('').reverse().join('')
+}
+
+function refineMsg(){
+    var msg = '<div class="msg">'+$('#msg').val()+'</div>'
+    var brdr = '<br>~~~~~~~~~~~~~~~~~~~~~~~~~~<br>'
+    return flip(brdr)+flip(msg)
+}
+
+$(document).on("click", "#transmit", function () {
+    $.ajax ({
+      type : 'POST', async : true,
+      error : errFunc, url : "post",
+      data : refineMsg(), success : connectSuccess
+    })
+})
+
+|>
+>
+body <
+
+div[width="90%"]<
+	div< img[src="Roof.png" height="200" width="300"]>
+	div< h1<Welcome to the House of Slack!>
+	     h8<Take your shoes off and enjoy the 'AML Proto-Syte'>>
+
+	span< img[src="LBobdobbs.png"]>
+	span< img[src="RBobdobbs.png"]>
+>
+
+div[width="80%"]<
+	`messages` |<!-- How to do scrollbar? -->|
+	>
+
+`talk??`
+
+.
+>
+>
+
+postBox {
+div<
+input[type="text" id="msg"] button[id="transmit"]<Transmit>
+>
+}

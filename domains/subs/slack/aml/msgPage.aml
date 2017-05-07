@@ -3,6 +3,7 @@
 html<
 head< 
 title<SLACK>
+link[rel="stylesheet" href="praiseBob.css"]
 script[type="text/javascript" src="jquery-3.1.1.js"]<>
 script[type="text/javascript"]<|
 
@@ -12,7 +13,7 @@ script[type="text/javascript"]<|
     }
 
 function connectSuccess(){
-;//just do a refresh
+    location.reload()
 }
 
 function flip(str){
@@ -20,7 +21,7 @@ function flip(str){
 }
 
 function refineMsg(){
-    var msg = '<div class="msg">'+$('#msg').val()+'</div>'
+    var msg = '<div class="post postorange">'+$('#msg').val()+'</div>'
     var brdr = '<br>~~~~~~~~~~~~~~~~~~~~~~~~~~<br>'
     return flip(brdr)+flip(msg)
 }
@@ -35,18 +36,19 @@ $(document).on("click", "#transmit", function () {
 
 |>
 >
-body <
+body[class="brown"]<
 
-div[width="90%"]<
-	div< img[src="Roof.png" height="200" width="300"]>
-	div< h1<Welcome to the House of Slack!>
+     div[id="header"]<
+
+	img[class="side" src="LBobdobbs.png"]
+
+	span[id="center"]< h1<Welcome to the House of Slack!> br[]
 	     h8<Take your shoes off and enjoy the 'AML Proto-Syte'>>
 
-	span< img[src="LBobdobbs.png"]>
-	span< img[src="RBobdobbs.png"]>
+	img[class="side" src="RBobdobbs.png"]
 >
 
-div[width="80%"]<
+div[width="80%" id="msgBox" class="brown"]<
 	`messages` |<!-- How to do scrollbar? -->|
 	>
 
@@ -57,7 +59,8 @@ div[width="80%"]<
 >
 
 postBox {
-div<
-input[type="text" id="msg"] button[id="transmit"]<Transmit>
+div[id="postBox"]<
+	span[id="tbox"] <input[type="text" id="msg"]>
+	span[id="butt"] <button[id="transmit"] <Transmit>>
 >
 }

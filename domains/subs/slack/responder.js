@@ -132,7 +132,7 @@ module.exports.methods = {
 	if (typeof fn !== 'undecided')
 	    fn(req, res)
 	else
-	    rese.end('cant find command')
+	    res.end('cant find command')
     }
 }
 

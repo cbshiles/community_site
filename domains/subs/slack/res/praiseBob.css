@@ -1,0 +1,127 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+
+
+#header {
+    display: -webkit-flex;
+    display: flex;
+    margin: auto;
+    width: 90%;
+}
+
+.side {
+    height: 100px;
+    width: 67px;
+    margin: auto;
+}
+
+#center {
+    height: 100px;
+    width: 60%;
+    margin: 20px;
+}
+
+.post {
+    border-radius: 25px;
+    font-weight: bold;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#msgBox {
+    overflow-y: auto;
+    height: 60%;
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#postBox {
+    width: 80%;
+    margin: auto;
+    display: -webkit-flex;
+    display: flex;
+
+}
+
+#tbox {
+    width: 75%;
+    height: 100%;
+}
+
+#butt {
+    width: 15%;
+    height: 100%;
+}
+
+#transmit {
+    width: 100%;
+    height: 100%;
+}
+
+#msg {
+    width: 100%;
+    height: 100%;
+}
+
+.tan {
+    background-color: #F6F2B7;
+}
+
+.pinktan {
+    background-color: #EEC8A7;
+}
+
+.brown {
+    background-color: #835C3B;
+}
+
+.postorange {
+    background-color: #DCF0FF;
+}
+
+.periwinkle {
+    background-color: #9E64FF;    
+
+}
+
+.boobpurple {
+    background-color: #bb00bb;
+}
+
+.cream {
+    background-color: #F5FFFA;
+    color: rgb(34,63,39);
+}
+
+.blue {
+	background-color: #314cad;
+} /* Blue */
+
+.red {
+    background-color: #EE1111;
+}
+
+.green {
+	background-color: #4CAF50;
+} /* Green */
+.button2 {
+	background-color: #008CBA;
+} /* Blue */
+.button3 {
+	background-color: #f44336;
+} /* Red */
+.grey {
+	background-color: #e7e7e7;
+	color: black;
+} /* Gray */
+.button5 {
+	background-color: #555555;
+} /* Black */
+
+.yellow {
+	background-color: #ffff33;
+} /* Yellow */

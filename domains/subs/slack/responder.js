@@ -1,4 +1,4 @@
-var rTools = require('../../../../../server/responderTools.js')
+var rTools = require('/home/ec2-user/webAML/web_server/responderTools.js')
 var fs = require('fs')
 /*
 there can be other providers within the domain,
@@ -129,10 +129,11 @@ module.exports.methods = {
     GET: rTools.makeGet(nums),
     POST: function(req, res){
 	var fn = postObj[req.url[1]]
-	if (typeof fn !== 'undecided')
+	if (typeof fn !== 'undefined')
 	    fn(req, res)
 	else
 	    res.end('cant find command')
     }
+
 }
 

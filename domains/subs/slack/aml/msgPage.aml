@@ -3,7 +3,10 @@
 html<
 head< 
 title<SLACK>
-link[rel="stylesheet" href="praiseBob.css"]
+meta [charset="UTF-8"]
+meta [name="viewport" content="width=device-width, initial-scale=1.0"]
+		
+link[rel="stylesheet" type="text/css" href="praiseBob.css"]
 script[type="text/javascript" src="jquery-3.1.1.js"]<>
 script[type="text/javascript"]<|
 
@@ -21,46 +24,55 @@ function flip(str){
 }
 
 function refineMsg(){
-    var msg = '<div class="post postorange">'+$('#msg').val()+'</div>'
-    var brdr = '<br>~~~~~~~~~~~~~~~~~~~~~~~~~~<br>'
-    return flip(brdr)+flip(msg)
+    var val = $('#msg').val().trim()
+    if (val == "") return ""
+    console.log(val.replace("\n", "<br>"))
+    var msg = '<div class="post postorange">'
+    	+val.replace(/\n/g, "<br>")
+	+'</div>'
+ //   var brdr = '<br>~~~~~~~~~~~~~~~~~~~~~~~~~~<br>'
+ //   return flip(brdr)+flip(msg)
+   return flip(msg)
 }
 
 $(document).on("click", "#transmit", function () {
+    var m = refineMsg()
+    if (m == "") return
+
     $.ajax ({
       type : 'POST', async : true,
       error : errFunc, url : "post",
-      data : refineMsg(), success : connectSuccess
+      data : m, success : connectSuccess
     })
 })
 
 |>
 >
-body[class="brown"]<
+body<
 
-     div[id="header"]<
+     div[id="scrollBox"]<
+
+     div[id="header" class="postorange"]<
 
 	img[class="side" src="LBobdobbs.png"]
 
 	span[id="center"]< h1<Welcome to the House of Slack!> br[]
-	     h8<Take your shoes off and enjoy the 'AML Proto-Syte'>>
+	     h8<Take your shoes off and enjoy the 'AML Proto-Site'>>
 
 	img[class="side" src="RBobdobbs.png"]
->
+     >
 
-div[width="80%" id="msgBox" class="brown"]<
+
 	`messages` |<!-- How to do scrollbar? -->|
 	>
 
 `talk??`
-
-.
 >
 >
 
 postBox {
 div[id="postBox"]<
-	span[id="tbox"] <input[type="text" id="msg"]>
-	span[id="butt"] <button[id="transmit"] <Transmit>>
+	span[id="tbox" class="padFive"] <textarea[id="msg" cols="40" rows="5"]<>>
+	span[id="butt" class="padFive"] <button[id="transmit"] <Transmit>>
 >
 }

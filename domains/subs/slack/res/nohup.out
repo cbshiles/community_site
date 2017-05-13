@@ -1,0 +1,22 @@
+module.js:471
+    throw err;
+    ^
+
+Error: Cannot find module '/home/ec2-user/webAML/community_site/domains/subs/slack/res/host.js'
+    at Function.Module._resolveFilename (module.js:469:15)
+    at Function.Module._load (module.js:417:25)
+    at Module.runMain (module.js:604:10)
+    at run (bootstrap_node.js:390:7)
+    at startup (bootstrap_node.js:150:9)
+    at bootstrap_node.js:505:3
+module.js:471
+    throw err;
+    ^
+
+Error: Cannot find module '/home/ec2-user/webAML/community_site/domains/subs/slack/res/host.js'
+    at Function.Module._resolveFilename (module.js:469:15)
+    at Function.Module._load (module.js:417:25)
+    at Module.runMain (module.js:604:10)
+    at run (bootstrap_node.js:390:7)
+    at startup (bootstrap_node.js:150:9)
+    at bootstrap_node.js:505:3

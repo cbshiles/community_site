@@ -95,7 +95,7 @@ function flip(str){
 }
 
 function slacker(num, res){
-    if ( num < count ){
+    if ( num < count && num >= 0){
 	var x = first + count - num - 1
 	fs.readFile(filer(x), 'utf8', (err, data) => {
 	    if (err) res.end(err.toString())

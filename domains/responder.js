@@ -1,2 +1,2 @@
-var rTools = require('/home/ec2-user/webAML/web_server/responderTools.js')
+var rTools = require('/home/brenan/code/web/server/responderTools.js')
 module.exports.methods = rTools.stdMethods

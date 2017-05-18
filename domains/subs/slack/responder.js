@@ -1,4 +1,4 @@
-var rTools = require('/home/brenan/code/web/server/responderTools.js')
+var rTools = require('../../../server/responderTools.js')
 var fs = require('fs')
 /*
 there can be other providers within the domain,

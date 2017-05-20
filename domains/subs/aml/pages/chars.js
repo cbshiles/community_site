@@ -41,4 +41,3 @@ module.exports.vars = function(hook){
 	function(){return cspec[2]}
     }
 }
-

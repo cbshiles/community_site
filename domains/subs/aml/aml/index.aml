@@ -1,4 +1,11 @@
-a[href="/aml/chars.html"]<Chars>
-a[href="/slack/0.html"]<Slack!>
-a[href="/iChing/shell.html"]<iChing>
+!DOCTYPE~ html[]
 
+html<
+	head<
+	>
+	body<
+	p<This is the page explaining AML (and maybe the community framework)
+	Soon to come!>
+a[href="/aml/chars.html"]<Chars>
+	>
+>

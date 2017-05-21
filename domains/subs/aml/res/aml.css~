@@ -1,0 +1,14 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+    background-color: #efe6d8;
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    margin: 25px;
+    max-width: 600px;
+
+}

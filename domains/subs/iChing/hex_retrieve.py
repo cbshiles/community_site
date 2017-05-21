@@ -24,10 +24,12 @@ class Line:
 def print_hex(hex):
 	for x in range(0,6):
 		print(hex[5-x].toString())
-		
+
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))		
 
 id=[]		
-with open('/home/brenan/code/web/sites/community/domains/subs/iChing/hex_map.t') as f:
+with open(dir_path+'/hex_map.t') as f:
 	for ln in f.readlines():
 		id += [int(z) for z in ln.rstrip().split('	')[::-1]]
 
@@ -90,7 +92,7 @@ class Hex_Page:
 			ans.append(self.lines[6]) #test this
 		return ans
 		
-with open('/home/brenan/code/web/sites/community/domains/subs/iChing/old/hexPages/I-Ching_Wilhelm_Translation.html') as hexF:
+with open(dir_path+'/old/hexPages/I-Ching_Wilhelm_Translation.html') as hexF:
 	m = re.split(r'<a name=".+"></a><br>', hexF.read()) #cuts off opening p tag		
 	pages = [ Hex_Page(i) for i in m[1::] ]
 

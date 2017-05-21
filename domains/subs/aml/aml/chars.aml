@@ -1,7 +1,9 @@
 !DOCTYPE~ html[]
 
 html<
-head<>
+head<
+	link [rel="stylesheet" type="text/css"  href="aml.css"]	
+>
 body <
 p< Abbreviated markup language is a language controlled by special characters. Special characters are ones that have an associated action. All other characters are considered normal. A sequence of normal characters makes up a word. Words have significance in that they can name a construct created by special characters.>
 

@@ -4,7 +4,7 @@ html<
 	head<
 title<iChing Casting>
 meta [charset="UTF-8"]
-
+link [rel="stylesheet" type="text/css"  href="iChing/iChing.css"]
 script[type="text/javascript" src="../jquery-3.1.1.js"]<>
 script[type="text/javascript"]<|
 
@@ -14,7 +14,24 @@ $(document).on("click", "#cast", function () {
 
 |>
 >
-	body<
-	button[id="cast"] <Cast>
-	>
+body<
+div[id="ibod"]<
+div[id="head"]<
+  button[id="cast"] <Cast>	
+br[]
+div[id="trigs"]<
+
+  img[class="trigram" src="iChing/chien.gif"]
+  img[class="trigram" src="iChing/sun.gif"]
+  img[class="trigram" src="iChing/li.gif"]
+  img[class="trigram" src="iChing/ken.gif"]
+  img[class="trigram" src="iChing/tui.gif"]
+  img[class="trigram" src="iChing/kan.gif"]
+  img[class="trigram" src="iChing/chen.gif"]
+  img[class="trigram" src="iChing/kun.gif"]
+>>
+  p[class="intro"]<These images above are the trigrams, made of three lines which are either broken or unbroken. The various combinations of two trigrams create the hexagrams, of which there are sixty-four. The I-Ching, an ancient Chinese book of divination, attributed a general description of a situation to each hexagram. They describe specific relations between people and/or forces in a situation, but are general enough to be applied to personal matters, familial relations, the workplace, or even armies and countries, as it was traditionally the ruling class who used the I-Ching.>
+  p[class="intro"]<The ancient Chinese had a method of casting (randomly selecting a hexagram) which involved counting bundles of thin sticks that were held between the fingers. This page replicates the logic behind that process when selecting a hexagram for you to view. Another name for the I-Ching is the Book of Changes. This is significant because each hexagram is viewed not as a permanent reality, but as a snapshot of an interplay of opposites that is ever changing. When selecting the lines for a hexagram, a line is not only broken or unbroken; it is also either changing or unchanging. A changing line will turn into its opposite during the hexagram's transformation to its next stage. So all changing lines turn from broken to unbroken or vice versa, and you get a new hexagram. If your hexagram had changing lines, the meanings of these changes and the new hexagram are included underneath the original hexagram.>
+>
+>
 >

@@ -2,6 +2,7 @@
 
 html<
 	head<
+	link [rel="stylesheet" type="text/css"  href="aml/aml.css"]
 	>
 	body<
 	p<This is the page explaining AML (and maybe the community framework)

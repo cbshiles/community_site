@@ -16,6 +16,7 @@ script[type="text/javascript"]<|
     }
 
 function connectSuccess(){
+    document.getElementById("transmit").disabled = false	
     location.reload()
 }
 
@@ -23,21 +24,32 @@ function flip(str){
     return str.split('').reverse().join('')
 }
 
+function dateStr(){
+var date = new Date();  
+var options = {  
+    year: "numeric", month: "short",  
+    day: "numeric", hour: "2-digit", minute: "2-digit"  
+};  
+
+return date.toLocaleTimeString("en-us", options);  
+}
+
 function refineMsg(){
     var val = $('#msg').val().trim()
     if (val == "") return ""
-    console.log(val.replace("\n", "<br>"))
     var msg = '<div class="post postorange">'
+    	+'<p class="timeStamp">'+dateStr()+' </p> '
     	+val.replace(/\n/g, "<br>")
 	+'</div>'
- //   var brdr = '<br>~~~~~~~~~~~~~~~~~~~~~~~~~~<br>'
- //   return flip(brdr)+flip(msg)
    return flip(msg)
 }
 
 $(document).on("click", "#transmit", function () {
     var m = refineMsg()
+    $('#msg').val('')
     if (m == "") return
+
+   document.getElementById("transmit").disabled = true
 
     $.ajax ({
       type : 'POST', async : true,
@@ -49,6 +61,8 @@ $(document).on("click", "#transmit", function () {
 |>
 >
 body<
+
+
 
      div[id="scrollBox"]<
 
@@ -72,7 +86,7 @@ body<
 
 postBox {
 div[id="postBox"]<
-	span[id="tbox" class="padFive"] <textarea[id="msg" cols="40" rows="5"]<>>
+	span[id="tbox" class="padFive"] <textarea[id="msg" cols="40" rows="3"]<>>
 	span[id="butt" class="padFive"] <button[id="transmit"] <Transmit>>
 >
 }

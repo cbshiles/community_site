@@ -5,6 +5,9 @@ html, body {
     background-repeat: repeat;  
     font-weight: bold;
     overflow: hidden;
+    display: -webkit-flex;
+    display: flex;
+flex-direction: column;
 }
 
 #header {
@@ -51,18 +54,26 @@ padding: 15px;
 
 #scrollBox {
     overflow-y: auto;
-    height: 84%;
     padding-right: 25px;
     padding-left: 25px;
     padding-top: 15px;
     padding-bottom: 15px;
+    height: 100%;
+    flex-grow: 6;
 }
 
 #postBox {
     margin: auto;
     display: -webkit-flex;
     display: flex;
+    min-height: 100 px;
+    flex-grow: 1;
+    width: 75%;
+}
 
+.timeStamp{
+    text-align: right;
+    font-size: 10px;
 }
 
 #tbox {

@@ -1,0 +1,245 @@
+AML stands for Abbreviated Markup Language. At its simplest, AML is a shorter syntax for HTML code.
+
+
+
+
+
+ <br> So anyways, anything between the angle brackets
+
+will turn into the content inside of that tag in the HTML. This doesn't explain how to put an attribute on a tag. For that, we 
+
+need square brackets:
+
+
+
+
+
+
+
+
+
+
+
+
+
+Soo how does AML know the name of a tag? It needs to remember the name of a tag because if has to insert it in the closing tag.
+
+HTML:
+
+I know what's a paragraph and what's a <b> tag </b>
+
+AML
+
+I know what's a paragraph and what's a b<tag>
+
+
+
+How does AML do it? The key is that AML is keep track of the current word, in other words, a list of all the characters
+
+since the last whitespace (newline, tab, or space). When the translator runs into a opening bracket, it know that the curret word
+
+is the name of the "enclosing" (yea going to have to introduce that idea)
+
+
+
+***Have a section with a list of ways to do doctype in aml
+
+
+
+***Enclosings and stuff
+
+
+
+Sooo - in too deep already
+
+
+
+Need to describe concept of words and the basic translational special chars
+
+-say thats it fully capable of just converting into plain html files and the other abilities will be discussed later
+
+Then describe the concept of chunks and talk about curly brances and backquotes
+
+
+
+This saves some typing, sometimes it can be confusing which tag you're closing, and emacs doesn't
+
+help much with indentation because its not a familiar language.
+
+
+
+You need to cover just what is a special character better (mention whitespace)
+
+
+
+Restart::: <br>
+
+AML stands for Abbreviated Markup Language. At its simplest, AML is a shorter syntax for HTML code. It can also be used AML to create
+
+HTML templates. When you write an AML file, you  can
+
+use the AML translator to convert it into a plain HTML file, or a formatted json file if you are creating a template.  For now though, 
+
+we are only going to talk about the parts of AML that directly translate into HTML. Probably the first thing
+
+you notice about AML is that it treats tags differently.
+
+
+
+In HTML, a basic template might look like this:
+
+<html>
+
+<head></head>
+
+<body>Stuff</body>
+
+</html>
+
+
+
+The equivalent code in AML would be:
+
+html<
+
+head<>
+
+body<Stuff>
+
+>
+
+
+
+As you can see, in AML the element name is outside of the brackets, and the body is surrounded by a single pair of brackets, 
+
+instead of being surrounded by an opening and closing tag. When creating a tag in AML, the last word before the opening brackets is used as the 
+
+element's name, so the opening and closing tag will have the element name in it. But what about the attributes for a tag? We don't want something
+
+like <p class="grass">Congrass!!</p class="grass">. Also what about tags that don't have a closing partner? Something like 'lineA br<> line' would
+
+turn into 'lineA <br> </br> lineB', and that's not what we want. Both of these situations call for square brackets!
+
+
+
+Tag with attributes?
+
+HTML:
+
+<p class="fancy"> My, what a fancy paragraph! </p>
+
+AML
+
+p [class="fancy"] <My, what a fancy paragraph!>
+
+
+
+Tag that doesn't have a closing partner? (also with attributes)
+
+HTML:
+
+<link rel="stylesheet" type="text/css"   href="pinkComicSans.css"   >
+
+AML
+
+link[rel="stylesheet" type="text/css"   href="pinkComicSans.css" ]
+
+
+
+So, the simple way of looking at it is that anything in square brackets goes in the opening tag, and the word before the opening brackets gets put in both tabs.
+
+If there is only square brackets, there is no closing tag. If there are square brackets and then angle brackets, without any words between
+
+them, then they will be treated as part of the same tag.
+
+
+
+HTML
+
+<p id="abc" This is fine>
+
+AML
+
+p [id="abc"]   <This is fine>
+
+
+
+HTML
+
+<p id="abc">  <z This is probably not what you wanted> </z>
+
+AML
+
+p [id="abc"]  z <This is probably not what you wanted>
+
+
+
+That covers how to make HTML tags in AML, let's move on to some of the other features. As you might have guessed, AML
+
+ has escape characters, so you can use other special characters without them being interpreted. To esacape a single character,
+
+use the tilde. 
+
+
+
+HTML:
+
+<p> I am an ASCII artist. Here is my masterpiece, the box [] </p>
+
+AML
+
+p <I am an ASCII artist. Here is my masterpiece, the box ~[~] >
+
+
+
+The tilde is contextual! What I mean by this is that it will only be interpreted as a special character itself if the following character is special.
+
+This is to allow the tilde to be used literally unless it precedes a special character.
+
+
+
+AML:
+
+This is the ~same in html
+
+HTML:
+
+This is the ~same in html
+
+
+
+If you want to escape multiple characters, you can use bar quotes. Anything between bar quotes is not interpretted, besides the
+
+fact that you can use the tilde to escape the bar quote character itself. (If any other character comes after the tilde 
+
+besides the bar quote or  the tilde, the tilde is treated as its literal self. (explain how the tilde really works the first
+
+time you introduce it, then just have this explanation as a logical result of the principles expounded upon earlier).
+
+
+
+To explore some of this, lets look at the different ways you can declare the doctype in AML.
+
+
+
+This is the doctype we are replicating:
+
+<!DOCTYPE html >
+
+
+
+|<!DOCTYPE html >|
+
+~<!DOCTYPE html ~>
+
+!DOCTYPE~ html[]
+
+|!DOCTYPE html|[]
+
+!DOCTYPE| |html[]
+
+
+
+The important trick for many of these is that white space is considered a special character, because it breaks up words. When whitespace is escaped, it 
+
+is added on to the current word instead of ending that word. Therefore, the whole string of "!DOCTYPE html" is considered to be the element name.

@@ -2,10 +2,13 @@
 
 html<
 	head<
+	title<Community>
+	link [rel="stylesheet" type="text/css"  href="/home.css"]
 	>
 	body<
-a[href="/aml"]<About AML> br[]
-a[href="/slack"]<Slack!> br[]
-a[href="/iChing"]<iChing>
+p<a[href="/aml" class="linkButt"]<About AML>>
+p<a[href="/slack" class="linkButt"]<Slack!>>
+p<a[href="/iChing" class="linkButt"]<iChing>>
+p<a[href="/codeLib" class="linkButt"]<codeLib>>
 	>
 >

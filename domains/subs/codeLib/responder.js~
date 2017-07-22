@@ -1,0 +1,30 @@
+var rTools = require('../../../server/responderTools.js')
+var fs = require('fs')
+
+postObj = {
+    post: function(req, res){
+	req.on('data', function(data) {
+	    console.log(data)
+	    var up = data.split(':', 1)
+	    if (up[0] == 'test' && up[1] == 'tset321'){
+		//create session variable that gives them permissions
+		res.end('y')
+	    } else {
+		res.end('n')
+	    }
+	})
+    }	  
+}
+
+module.exports.methods = {
+    GET: rTools.stdHtml(path, base, req, res),
+    POST: function(req, res){
+	var fn = postObj[req.url[1]]
+	if (typeof fn !== 'undefined')
+	    fn(req, res)
+	else
+	    res.end('cant find command')
+    }
+
+}
+

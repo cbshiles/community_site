@@ -7,7 +7,7 @@ meta [charset="UTF-8"]
 meta [name="viewport" content="width=450, initial-scale=1.0"]
 		
 link[rel="stylesheet" type="text/css" href="praiseBob.css"]
-script[type="text/javascript" src="../jquery-3.1.1.js"]<>
+script[type="text/javascript" src="/jquery-3.1.1.js"]<>
 script[type="text/javascript"]<|
 
     function errFunc(err) {
@@ -70,8 +70,9 @@ body<
 
 	img[class="side" src="LBobdobbs.png"]
 
-	span[id="center"]< h1<Welcome to the House of Slack!> br[]
-	     h8<Take your shoes off and enjoy the 'AML Proto-Site'>>
+	span[id="center"]< h1<Welcome to the House of Spleen!> br[]
+	     h2<You'll never take my shinies.>
+	     p<a[href="http://ec2-54-84-70-27.compute-1.amazonaws.com/slack/aboutHtml.html"]<SLACK on HTML>>>
 
 	img[class="side" src="RBobdobbs.png"]
      >

@@ -38,7 +38,7 @@ var pages = fs.readdirSync(__dirname+'/slacks')
 //dangerously assumes contiguous file names
 
 var count = 0 //# of numbered files
-var first = 999999 //# of lowest numbered file
+var first = 999999 //# of lowest numbered file, if this site ever gets to a millionandtwelve pages, it will explode
 
 for (var i=0; i<pages.length; i++){
     count++
@@ -55,7 +55,7 @@ function bytesIn(fName){
 }
 
 var MAX_PAGES = 12
-var MAX_CHARS = 1024*64
+var MAX_CHARS = 1024*24
 //read dir to look at all the numbered files
 
 var slackDir = __dirname+'/slacks/'

@@ -1,4 +1,0 @@
-animal = dog
-toy=bone
-the spaces = dont = matter
-line with no delimter

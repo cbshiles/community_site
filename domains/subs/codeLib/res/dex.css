@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+ }
+
+body{
+    font-weight: bold;
+    font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
+   font-size: 18px;
+   display: flex;
+    flex-direction: column;
+}
+
+#ups {
+display: flex;
+padding-top: 50px;
+    padding-right: 15px;
+    padding-left: 15px;
+
+}
+
+.link{
+    padding-left: 30px;
+}
+
+#pot {
+display: flex;
+    flex-direction: row;
+padding-bottom: 30px;
+-webkit-flex:1 0 auto;
+}
+
+#greet {
+display: flex;
+    flex-direction: column;
+
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#files{
+    display: flex;
+    flex-direction: column;
+}
+
+}

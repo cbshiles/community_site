@@ -1,0 +1,95 @@
+!DOCTYPE~ html[]
+
+html<
+	head<
+	title<CodeLib>
+	meta [charset="UTF-8"]
+	meta [name="viewport" content="width=450, initial-scale=1.0"]
+link[rel="stylesheet" type="text/css" href="/codeLib/dex.css"]
+script[type="text/javascript" src="/jquery-3.1.1.js"]<>
+script[type="text/javascript"]<|
+
+    function errFunc(err) {
+        console.log("Post error!");
+        console.log(err);
+    }
+
+    function connectSuccess(data){
+    console.log(data)
+    //    location.reload()
+
+    document.getElementById("logon").style.display="none"; 
+    document.getElementById("upload").style.display="block"; 
+}
+
+$(document).on("click", "#again", function () {
+    document.getElementById("confirm").style.display="none"; 
+    document.getElementById("upload").style.display="block"; 
+})			
+
+$(document).on("click", "#login", function () {
+
+   var hash = $('#userid').val()+':'+$('#pass').val() 				  
+
+    $.ajax ({
+      type : 'POST', async : true,
+      error : errFunc, url : "/codeLib/post",
+      data : hash, success : connectSuccess
+    })
+})
+
+$(document).on("click", "#send", function () {
+
+   var hash = { fname:  $('#fname').val(),
+       	      	content: $('#content').val()} 				  
+
+    $.ajax ({
+      type : 'POST', async : true,
+      error : errFunc, url : "/codeLib/send",
+      data : JSON.stringify(hash), success : function (data){
+   document.getElementById("upload").style.display="none"; 
+    document.getElementById("confirm").style.display="block"; 
+
+    if (data === 'y'){
+    $("#msg").text('Your file has been successfully sent.')
+    } else {
+    $("#msg").text("Sorry, file couldn't be saved. Is there already a file with that name?")
+    }
+ }
+ })
+
+
+})
+|>
+	>
+	body[style="background-color:#82a997;"]<
+
+div[id="pot"]<
+
+div[id="greet"]<
+	h2<Here's some free code> br[]
+	img[src="/codeLib/bitWave.jpg"]
+>
+
+div[id="ups"]<
+div[id="logon"]<
+ ID: input[type="text" id="userid"] br[]
+ Password: input[type="password" id="pass"] br[]
+button[id="login"]<Login>
+p<Logging in is only needed for uploads. >
+>
+
+div [id="upload" style="display:none;"]<
+ File name: input[type="text" id="fname"] br[]
+ Content: textarea[id="content" cols="4"  rows="1"]<>
+ button[id="send"]<Send>
+>
+
+div [id="confirm" style="display:none;"]<
+p[id="msg"]<->
+button[id="again"]<Upload another file>
+>>>
+	div[id="files"]<
+	`lzt`
+	>>
+>

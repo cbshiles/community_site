@@ -1,0 +1,9 @@
+a.linkButt{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+    margin: 30px 30px 30px 30px ;
+}

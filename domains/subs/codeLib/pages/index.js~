@@ -1,0 +1,17 @@
+var fs = require('fs');
+
+module.exports.vars = function(hook){
+    return {
+	lzt:
+	function(){
+
+	    var items = fs.readdirSync('community/domains/subs/codeLib/res')
+	    var ans = ''
+	    for (var i=0; i<items.length; i++) {
+		ans += '<a href="'+items[i]+'">'+items[i]+'</a>\n'
+	    }
+
+	    return ans
+	}
+    }
+}

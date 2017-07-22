@@ -1,0 +1,156 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+    background-image: url("mandala4.jpg");
+    background-repeat: repeat;  
+    font-weight: bold;
+    overflow: hidden;
+}
+
+#header {
+    font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
+    display: -webkit-flex;
+    display: flex;
+    margin: auto;
+padding: 15px;
+    width: 80%;
+    border-radius: 110px;
+    height: 250px;
+/*
+   font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+*/
+}
+
+.side {
+    height: 52%;
+    width: 13%;
+    margin: auto;
+}
+
+#center {
+    height: 100%;
+    width: 60%;
+    margin: 20px;
+}
+
+.post {
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    border-radius: 45px;
+    font-size: 115%;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin: 20px auto;
+    width: 66%;
+}
+
+#scrollBox {
+    overflow-y: auto;
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#postBox {
+    margin: auto;
+    display: -webkit-flex;
+    display: flex;
+
+}
+
+#tbox {
+    width: 75%;
+    height: 100%;
+
+}
+
+.padFive {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: auto;
+}
+
+#butt {
+    width: 15%;
+    height: 100%;
+    height: 80px;
+    width: 150px;
+}
+
+#transmit {
+    width: 100%;
+    height: 100%;
+}
+
+#msg {
+    width: 100%;
+    height: 100%;
+}
+
+.tan {
+    background-color: #F6F2B7;
+}
+
+.pinktan {
+    background-color: #EEC8A7;
+}
+
+.brown {
+    background-color: #835C3B;
+}
+
+.postorange {
+    background-color: #f5de9a;
+}
+
+.periwinkle {
+    background-color: #9E64FF;    
+
+}
+
+.boobpurple {
+    background-color: #DE6151;
+/*    background-color: #bb00bb;*/
+}
+
+.cream {
+    background-color: #F5FFFA;
+    color: rgb(34,63,39);
+}
+
+.blue {
+	background-color: #314cad;
+} /* Blue */
+
+.red {
+    background-color: #EE1111;
+}
+
+.green {
+	background-color: #4CAF50;
+} /* Green */
+.button2 {
+	background-color: #008CBA;
+} /* Blue */
+.button3 {
+	background-color: #f44336;
+} /* Red */
+.grey {
+	background-color: #e7e7e7;
+	color: black;
+} /* Gray */
+.button5 {
+	background-color: #555555;
+} /* Black */
+
+.yellow {
+	background-color: #ffff33;
+} /* Yellow */

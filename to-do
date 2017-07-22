@@ -1,3 +1,6 @@
-add list of links to back pages on the bottom of the pages on slack board
-add styling to iChing's AMLneed to add images to hexs (should do this from within python program)
-a slash at end of urls will muss it upp
+high: at this point i [believe] that node has to be restarted for slack to roll over to a new text file. not verified, but suspected. needs to be explored
+
+med: what about files with no extension? like for codeLib
+
+
+low: add list of links to older pages on the bottom of the pages on slack board

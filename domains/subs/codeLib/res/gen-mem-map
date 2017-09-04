@@ -1,0 +1,221 @@
+package com.ah.engine.util;
+
+import java.time.LocalDate;
+import java.util.*;
+import java.util.Map.Entry;
+import com.ah.engine.dao.PayerGrid;
+import com.ah.engine.model.additional.Result;
+import com.ah.engine.model.inbound.*;
+
+public abstract class GenMemMap<T extends Output>{
+	
+	private static int SIZE_INIT = 5000;
+
+	private Map<String, T> map;
+	private String header;
+
+    public GenMemMap(List<GeneralMembership> lzt, String header){
+    	makeMap(lzt);
+    	this.header = header;
+    }
+
+    public abstract T makeOutput(GeneralMembership gm);
+    
+    public abstract T copyOutput(T t);
+
+    public GenMemMap copy() {
+    	GenMemMap gmap = new GenMemMap(hasReqExcl);
+    	
+	Iterator<Map.Entry<String, T>> entries = map.entrySet().iterator();
+	while (entries.hasNext()) {
+	    Output op = entries.next().getValue();
+	    gmap.map.put(op.getMemId(), copyOutput(op));
+	}
+	return gmap;
+    }
+    
+    private void makeMap(List<GeneralMembership> lzt){
+    	int size = (lzt == null)?SIZE_INIT:lzt.size();
+		map = new HashMap<String, T>((int)(size/.74));		
+		
+		if (lzt != null) {
+			for (GeneralMembership gm : lzt) {
+				map.put(gm.getMemId(), makeOutput(gm));
+			}
+		}
+    }
+
+    public void removeIfNotIn(List<? extends HasMemId> lzt){
+	invalidateAll();
+	for (HasMemId hmi: lzt)
+	    validate(hmi.getMemId());
+	removeInvalid();
+    }
+    
+    public void removeIfNotInEnrollment(List<MembershipEnrollment> lzt, List<PayerGrid> payers){
+
+    	invalidateAll();
+	for (MembershipEnrollment me: lzt){
+	    Output op = validate(me.getMemId());
+	    if (op != null){
+		op.payer = me.getPayer();
+		op.valid = PayerGrid.hasRelevantPayer(op.payer, payers);
+	    }
+	}
+	removeInvalid();
+    }
+     
+    public void removeIfNotInVisitTwiceOrNotInOtherVisitOrPharm(List<Visit> visits, List<Visit> otherVisits, List<Pharmacy> pharms){
+    	invalidateAll();
+    	String memId = "";
+    	int visitCount = 0;
+	for (Visit v: visits){
+	    if (!v.getMemId().equals(memId)) {
+		visitCount = 0;
+		memId = v.getMemId();
+	    }
+	    visitCount++;
+	    if (visitCount > 1)
+		validate(v.getMemId());
+	}
+	for (Visit v: otherVisits){
+	    validate(v.getMemId());
+	}
+	for (Pharmacy p : pharms) {
+	    validate(p.getMemId());
+	}
+	removeInvalid();
+    }
+
+    public void removeIfIn(List<? extends HasMemId> lzt){
+	for (HasMemId hmi: lzt)	
+	    removeIfExists(hmi.getMemId());
+    }
+    
+    private void invalidateAll(){
+	Iterator<Map.Entry<String, T>> entries = map.entrySet().iterator();
+	while (entries.hasNext()) {
+	    T em = entries.next().getValue();
+	    em.valid = false;
+	}
+    }
+
+    public T validate(String memId) {
+	T em = map.get(memId);
+	if (em != null) {
+	    em.valid = true;
+	}
+	return em;
+    }
+
+    private void removeInvalid() {
+	Iterator<Map.Entry<String, T>> entries = map.entrySet().iterator();
+	while (entries.hasNext()) {
+	    if (!entries.next().getValue().valid) {
+		entries.remove();
+	    }
+	}
+    }
+	
+	public void removeIfExists(String memId){
+		T em = map.get(memId);
+		if (em != null) {
+			map.remove(memId);
+		}
+	}
+	
+	public List<T> getAsList(){
+		List<T> lzt = new ArrayList<T>(map.values());
+		Collections.sort(lzt);
+		return lzt;
+	}
+	
+	public int size(){
+		return map.size();
+	}
+	
+	public T get(String memId){
+		return map.get(memId);
+	}
+	
+
+	// right now, age is the oldest you can be while still being in the younger group
+	public List<GenMemMap> splitByAge(int age, LocalDate date) {
+		List<GenMemMap> gmaps = Arrays.asList(new GenMemMap(hasReqExcl), new GenMemMap(hasReqExcl));
+
+		Iterator<Map.Entry<String, T>> entries = map.entrySet().iterator();
+		while (entries.hasNext()) {
+			T em = entries.next().getValue();
+			if (LocalDateUtil.isUnderAge(em.gm.getDob(), age + 1, date)) {
+				gmaps.get(0).map.put(em.gm.getMemId(), em);
+			} else {
+				gmaps.get(1).map.put(em.gm.getMemId(), em);
+			}
+		}
+		return gmaps;
+	}
+    
+	private String printInvalid(String msg) {
+	    String str = "";
+	    
+		Iterator<Map.Entry<String, T>> entries = map.entrySet().iterator();
+		while (entries.hasNext()) {
+			T em = entries.next().getValue();
+	    	if (em.valid == false) {
+	    		em.valid = true;
+	    		str += msg + ": "+em.getMemId()+"\n";
+	    	}
+	    }
+	    return str;
+	}
+	
+	public String printThoseNotIn(List<Result> lzt) {
+		String msg = "Shouldn't have member";
+		invalidateAll();
+		for (com.ah.engine.model.additional.Result r: lzt) {
+			validate(r.getMemId());
+		}
+		String s = printInvalid(msg);
+		return s;
+	}	
+
+    //TODO: Override this for EocMap, since req exclusions couldn't be included here
+	public String printThoseInThisButNotMap(List<Result> lzt) {
+		String msg = "We need member ";
+		String str = "";
+		for (com.ah.engine.model.additional.Result r: lzt) {
+			T em = get(r.getMemId());
+			if (em == null)
+				str += msg + " "+r.getMemId()+"\n";
+		}		
+		return str;
+	}
+    
+	public List<Object> getOutputList(String measure, List<PayerGrid> payers) {
+		List<T> lzt = getAsList();
+		Collections.sort(lzt);
+
+		List<Object> fullOutputList = new ArrayList<Object>();
+		for (T t : lzt) {
+			List<Object> outputList = new ArrayList<Object>();
+			for (PayerGrid payer : payers) {
+				String payOutput = payer.lookup(payer);
+				if (payOutput != null) {
+					outputList.add(t.createOutputLine(measure, payOutput));
+				}
+			}
+			Collections.sort(singleEocList);
+			fullEocList.addAll(singleEocList);
+		}
+		return fullEocList;
+	}
+	
+	public String printOutputList(List<EffectivenessOfCare> lzt){
+		String str = header + "\n";
+		for (T out: lzt){
+			str += out;
+		}
+		return str;
+	}
+}
+   

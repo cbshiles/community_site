@@ -61,6 +61,7 @@ var MAX_CHARS = 1024*24
 var slackDir = __dirname+'/slacks/'
 
 if (count == 0) {first = 0; newFile()}
+console.log("fill: "+filer(count+first-1))
 var fill = bytesIn(filer(count+first-1))
 
 function addText(msg){
@@ -70,20 +71,16 @@ function addText(msg){
 	    return
 	}
 	fill += msg.length
-	if (fill > MAX_CHARS){
-	    newFile()
-	    fill = 0
-	}
     })
 }
 
 // a new file will have the # 
 function newFile(){
     var gnu = count+first
-    fs.writeFile(filer(gnu), '', function(err){
+    fs.appendFile(filer(gnu), '', function(err){
 	if (err) console.log(err)
     })
-    if (++count > MAX_PAGES){
+    if (++count > MAX_PAGES){ //wont happen for a loong time..
 	fs.unlinkSync(filer(first))
 	first++
 	count--
@@ -96,7 +93,9 @@ function flip(str){
 
 function slacker(num, res){
     if ( num < count && num >= 0){
+	console.log("SDSDS"+first +" "+ count +" "+ num +" "+ 1)
 	var x = first + count - num - 1
+	console.log(first+":"+ count+":"+ num+":"+ x)
 	fs.readFile(filer(x), 'utf8', (err, data) => {
 	    if (err) res.end(err.toString())
 	    var page = rTools.combine(mold, provider(flip(data), num==0))
@@ -118,6 +117,7 @@ function nums(path, base, req, res){
 
 postObj = {
     post: function(req, res){
+	if (fill > MAX_CHARS) newFile()
 	req.on('data', function(data) {
 	    addText(data)
 	    res.end('Post sent')

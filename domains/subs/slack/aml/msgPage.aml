@@ -1,6 +1,7 @@
 !DOCTYPE~ html[]
 
 html<
+|<!-- The perl translator is officially working! -->|
 head< 
 title<SLACK>
 meta [charset="UTF-8"]
@@ -111,8 +112,6 @@ function send(refineFn){
    document.getElementById("transmit").disabled = true
    document.getElementById("nsfwTransmit").disabled = true
 
-   
-
     $.ajax ({
       type : 'POST', async : true,
       error : errFunc, url : "post",
@@ -131,7 +130,7 @@ $(document).on("click", "#nsfwTransmit", function () {
 
 
 $(document).ready(function () {
-$('#tbox').keypress(function(e) {
+$('#tbox').keydown(function(e) {
    var code = e.keyCode ~|~| e.which;
    if(e.ctrlKey && code == 13) { 
    	send(refineMsg)
@@ -155,19 +154,16 @@ body<
 
      div[id="header" class="postorange"]<
 
-	img[class="side" src="slackware-bob.gif"]
+	img[class="side up" src="owlUpsidedown.png"]
 
-	span[id="center"]< h1<Welcome to the House of Slack!> br[]
+	span[id="center"]< h1<Welcome to the House of Slack!>
 	     h2<Take your feet off, enjoy the ride.>
 	     p<a[href="http://ec2-54-84-70-27.compute-1.amazonaws.com/slack/aboutHtml.html"]<SLACK on HTML>>>
 
-	img[class="side" src="slackware-bob.gif"]
+	img[class="side down" src="owlExtracted.png"]
      >
-
-
-	`messages` |<!-- How to do scrollbar? -->|
+	`messages`
 	>
-
 `talk??`
 >
 >

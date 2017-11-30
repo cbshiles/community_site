@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0px;
-    background-image: url("mandala3.jpg");
+    background-image: url("sunblot.png");
     background-size: 200px 198px;
     background-repeat: repeat;  
     font-weight: bold;
@@ -15,6 +15,7 @@ flex-direction: column;
     font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
     display: -webkit-flex;
     display: flex;
+    /*flex-direction: column;*/
     margin: auto;
 padding: 15px;
     width: 80%;
@@ -30,15 +31,26 @@ padding: 15px;
 }
 
 .side {
-    height: 52%;
-    width: 13%;
-    margin: auto;
+    height:75%;
+    width: 25%;
+    margin: 0px;
+}
+
+.up {
+margin-bottom: auto;
+margin-left: 5%;
+}
+
+.down {
+margin-right: 5%;
+margin-top: auto;
 }
 
 #center {
     height: 100%;
     width: 60%;
     margin: 20px;
+    margin-left:100px;
 }
 
 .post {

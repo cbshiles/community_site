@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+#This script need work!
+#keeps emacs processes open? and doesnt account for the fact that the #s might not start @ 1
 use strict;
 use warnings;
 
@@ -22,6 +24,7 @@ my $wf = $dir.'/'.($n - $go2 - 1).".txt";
 my $ef = "/tmp/blah";
 print "$wf";
 
+#reve reverses each line, we kinda of want the whole flip
 `cat $wf |  rev > $ef`;
 `emacs $ef`;
 `cat $ef | rev > $wf`;

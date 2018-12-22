@@ -1,4 +1,3 @@
-var rTools = require('../../../server/responderTools.js')
 var fs = require('fs')
 
 postObjj = { //Name conflict!! geez..
@@ -51,7 +50,7 @@ postObjj = { //Name conflict!! geez..
 }
 
 module.exports.methods = {
-    GET: rTools.nrmGet,
+    GET: toolz.nrmGet,
     POST: function(req, res){
 	console.log(req.url[1])
 	var fn = postObjj[req.url[1]]

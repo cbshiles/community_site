@@ -1,4 +1,3 @@
-var rTools = require('../../../server/responderTools.js')
 var fs = require('fs')
 /*
 there can be other providers within the domain,
@@ -96,7 +95,7 @@ function slacker(num, res){
 	var x = first + count - num - 1
 	fs.readFile(filer(x), 'utf8', (err, data) => {
 	    if (err) res.end(err.toString())
-	    var page = rTools.combine(mold, provider(flip(data), num==0))
+	    var page = toolz.combine(mold, provider(flip(data), num==0))
 	    res.end(page)
 	})
     } else {
@@ -109,7 +108,7 @@ function nums(path, base, req, res){
     if (!isNaN(bnum)){
 	slacker(bnum, res)
     } else {
-	rTools.stdHtml(path, base, req, res)
+	toolz.stdHtml(path, base, req, res)
     }
 }
 
@@ -127,7 +126,7 @@ postObj = {
 }
 
 module.exports.methods = {
-    GET: rTools.makeGet(nums),
+    GET: toolz.makeGet(nums),
     POST: function(req, res){
 	var fn = postObj[req.url[1]]
 	if (typeof fn !== 'undefined')

@@ -154,13 +154,13 @@ body<
 
      div[id="header" class="postorange"]<
 
-	img[class="side up" src="owlUpsidedown.png"]
+	img[class="side up" src="LBobdobbs.png"]
 
 	span[id="center"]< h1<Welcome to the House of Slack!>
 	     h2<Take your feet off, enjoy the ride.>
-	     p<a[href="http://ec2-54-84-70-27.compute-1.amazonaws.com/slack/aboutHtml.html"]<SLACK on HTML>>>
+	     p<a[href="aboutHtml.html"]<SLACK on HTML>>>
 
-	img[class="side down" src="owlExtracted.png"]
+	img[class="side down" src="RBobdobbs.png"]
      >
 	`messages`
 	>

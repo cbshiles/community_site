@@ -1,3 +1,4 @@
+# coding=utf-8
 import re
 
 class Line:
@@ -129,7 +130,7 @@ class Hex_Page:
           x = self.count(0, 3)
           return trigrams[x]
 
-with open(dir_path+'/I-Ching_Wilhelm_Translation.html') as hexF:
+with open(dir_path+'/I-Ching_Wilhelm_Translation.html', 'r', encoding='utf-8') as hexF:
   m = re.split(r'<a name=".+"></a><br>', hexF.read()) #cuts off opening p tag    
   pages = [ Hex_Page(p, id[i]) for i, p in enumerate(m[1::]) ]
 
@@ -178,7 +179,7 @@ class Hex:
 #with open('hexPages/out.html', 'w') as out:
 #  out.write(getPage(Hex(Ancient_Yarrow())))
 
-print(getPage(Hex(Ancient_Yarrow())))
+print(getPage(Hex(Ancient_Yarrow())).encode('ascii', errors='xmlcharrefreplace').decode())
 
 #have a method that takes a hex and returns a tuple contained the numerical values for top and bottom trigram
 #add pictures into html page, as well as the hexagram the original changes into  

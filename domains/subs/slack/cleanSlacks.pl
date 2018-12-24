@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/local/bin/perl
 #This script need work!
 #keeps emacs processes open? and doesnt account for the fact that the #s might not start @ 1
 use strict;
@@ -8,7 +8,7 @@ my $argSize = @ARGV;
 $argSize > 0 or die "Error: Which page do you want to go to?";
 my $go2 = $ARGV[0];
 
-my $dir = '/home/ec2-user/webAML/community_site/domains/subs/slack/slacks';
+my $dir = '/home/brenan/community_site/domains/subs/slack/slacks';
 opendir(DIR, $dir) or die $!;
 
 my $n = 0;

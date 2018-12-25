@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     margin: 0px;
     background-image: url("mandala5.jpg");
-    background-size: 200px 198px;
+    background-size: 100px 99px;
     background-repeat: repeat;  
     font-weight: bold;
     overflow: hidden;
@@ -11,23 +11,23 @@ html, body {
 flex-direction: column;
 }
 
+h1 {
+    font-size: 16px;
+}
+
+.mobileHide {
+    visibility: hidden;
+}
+
 #header {
     font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
     display: -webkit-flex;
     display: flex;
-    /*flex-direction: column;*/
     margin: auto;
-padding: 15px;
     width: 80%;
-    border-radius: 110px;
-    height: 250px;
-/*
-   font-size: 24px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 500;
-    line-height: 26.4px;
-*/
+    padding: 8px;
+    border-radius: 60px;
+    height: 120px;
 }
 
 .side {
@@ -48,29 +48,21 @@ margin-top: auto;
 
 #center {
     height: 100%;
-    width: 60%;
-    margin: 20px;
-    margin-left:100px;
+    width: 50%;
+    margin: 10px;
 }
 
 .post {
     font-family: Tahoma,Verdana,Segoe,sans-serif;
-    border-radius: 45px;
-    font-size: 115%;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-top:10px;
-    padding-bottom:10px;
-    margin: 20px auto;
-    width: 66%;
+    border-radius: 15px;
+    padding: 10px 15px 10px 5px;
+   margin: 10px auto;
+    width: 91%;
 }
 
 #scrollBox {
     overflow-y: auto;
-    padding-right: 25px;
-    padding-left: 25px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 8px 12px;
     height: 100%;
     flex-grow: 6;
 }
@@ -81,7 +73,7 @@ margin-top: auto;
     display: flex;
     min-height: 100 px;
     flex-grow: 1;
-    width: 75%;
+    width: 95%;
 }
 
 .timeStamp{
@@ -96,23 +88,21 @@ margin-top: auto;
 }
 
 .padFive {
-    padding-right: 5px;
-    padding-left: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
     margin: auto;
 }
 
-#butt {
-    width: 15%;
+.butt {
+    width: 22%;
     height: 100%;
-    height: 80px;
-    width: 150px;
+/*    height: 80px;
+    width: 150px;*/
 }
 
-#transmit {
+.butt button {
+    padding: 15px 5px;
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 
 .hid {visibility: hidden;}
@@ -181,3 +171,59 @@ margin-top: auto;
 .yellow {
 	background-color: #ffff33;
 } /* Yellow */
+
+@media only screen and (min-width: 768px) {
+html, body {
+    background-size: 200px 198px;
+}
+
+.mobileHide {
+    visibility: visible;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+#header {
+    padding: 15px;
+    border-radius: 110px;
+    height: 250px;
+}
+
+#center {
+    margin: 20px;
+}
+
+.post {
+    border-radius: 45px;
+    font-size: 115%;
+    padding: 10px 15px;
+    margin: 20px auto;
+    width: 66%;
+}
+
+#scrollBox {
+    padding: 15px 25px;
+}
+
+#postBox {
+    width: 75%;
+}
+
+.butt {
+    height: 120px;
+    width: 120px;
+    padding-top: 18px;
+}
+
+.butt button {
+    padding: 10px 5px;
+    width: 100%;
+    height: 50%;
+}
+
+#scrollBox {
+    padding: 15px 25px;
+}
+}

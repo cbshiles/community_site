@@ -8,7 +8,7 @@
 			"subs" : {},
 			"texts" : 
 			[
-				"\n <div id=\"postBox\">\n  <span id=\"tbox\" class=\"padFive\" >  <textarea id=\"msg\" cols=\"40\"  rows=\"3\"  >  </textarea>  </span>  \n  <span class=\"padFive butt\" >  <button id=\"transmit\"> Post </button> </span> \n  <span class=\"padFive butt\" >  <button id=\"nsfwTransmit\"> Hidden  post  </button>  </span>  \n </div>  \n \n  \n \n"
+				"\n <div id=\"postBox\">\n  <span id=\"tbox\" class=\"padFive\" >  <textarea id=\"msg\" cols=\"40\"  rows=\"3\"  >  </textarea>  </span>  \n  <span class=\"padFive butt\" >  <button id=\"transmit\"> Post </button> </span> \n  <span class=\"padFive butt\" >  <button id=\"nsfwTransmit\"> Hidden  post  </button>  </span>  \n  <div class=\"padFive butt\" > \n    <span class=\"imgSpan\"> <input type=\"file\" id=\"imgInput\"  accept=\"image/*\"  >  </span>  \n    <span class=\"imgSpan\"> <button id=\"imgButton\">Upload Image </button> </span> \n  </div> \n  \n </div> \n  \n \n \n  \n \n"
 			],
 			"vars" : []
 		}

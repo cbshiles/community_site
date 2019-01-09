@@ -1,4 +1,5 @@
 var fs = require('fs')
+//var formidable = require(config['requireDir']+'/formidable');
 /*
 there can be other providers within the domain,
 but since this one will recieve the most (probably) requests,
@@ -122,7 +123,31 @@ postObj = {
 	    addText(data)
 	    res.end('Post sent')
 	})
-    }	  
+    },
+
+    img: function(req, res){
+	console.log('loggogo')
+	req.setEncoding('binary')
+	var data = ''
+	req.on('data', function(chunk) {
+	    console.log('data  is on '+ typeof chunk)
+	    data += chunk
+	}).on('end', function() {
+
+	    if (req.headers['content-length'] < 50e6){ //50 MB
+		var fname = req.headers['name']
+		console.log('Uploading image '+fname+' of type '+req.headers['content-type'])
+		var path = __dirname+'/res/'+req.headers['name']
+		var regex64 = new RegExp('^data:'+req.headers['content-type']+';base64,')
+		data = new Buffer(data.replace(regex64, ''), 'base64')
+		fs.writeFileSync(path, data, 'binary')
+		res.end('<img src="'+fname+'" max-width="100%">')
+	    } else {
+		res.end('File too large!')
+	    }
+	})
+
+    }
 }
 
 module.exports.methods = {

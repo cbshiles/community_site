@@ -32,5 +32,9 @@ postBox {
   span[id="tbox" class="padFive"] <textarea[id="msg" cols="40" rows="3"]<>>
   span[class="padFive butt"] <button[id="transmit"] <Post>>
   span[class="padFive butt"] <button[id="nsfwTransmit"] <Hidden post>>
+  div[class="padFive butt"]<
+    span[class="imgSpan"] <input[type="file" id="imgInput" accept="image/*"]>
+    span[class="imgSpan"] <button[id="imgButton"]<Upload Image>>
+  >
  >
 }

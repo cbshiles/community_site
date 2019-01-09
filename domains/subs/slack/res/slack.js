@@ -29,6 +29,9 @@ function refineMsg(val){
     var val = val.trim()
     if (val == "") return ""
 
+    var addHttp = (!/^(f|ht)tps?:\/\//i.test(val))
+    val = val.replace(/~~(([^\. ]+\.)?[^\. ]+\.[A-Za-z]+(\/[^ ]*)?)/, "<a href=\""+(addHttp?'http://':'')+"$1\">$1</a>")
+    
     var msg = '<div class="post postorange">'
     	+'<p class="timeStamp">'+dateStr()+' </p> '
     	+val.replace(/\n/g, "<br>")
@@ -74,7 +77,7 @@ function refineMsgNSFW(val){
 
 
     var name = getID()
-    var msg = '<div class="hid" id="'+ name +'">'
+    var msg = '<div class="hid" id="'+ name +'"> ' //last space is needed, or the id can get eaten by the url-izer in refineMsg
     	+val
 	+'</div>'
         +'<button onclick="toggle(\''+name+'\')" id="'+(name+'Butt')+'">Show</button>'
@@ -115,6 +118,14 @@ $(document).on("click", "#nsfwTransmit", function () {
     send(refineMsgNSFW)
 })
 
+$(document).on("click", "#imgButton", function () {
+    var file = $('#imgInput')[0].files[0]
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(event){
+	uploadImage(event.target.result, file.name)
+    }
+})
 
 $(document).ready(function () {
 $('#tbox').keydown(function(e) {
@@ -131,4 +142,33 @@ function enableEnter(event) {
         event.preventDefault();
         ezpConsole.partOverride.retrieveParts();
     }
+}
+
+function appendToMsgBox(content){
+    $("#msg").val($("#msg").val()+' '+content)
+}
+
+//image uploading code
+function uploadImage(imgData, name){
+    
+    var ext = name.trim().split('.').pop().toLowerCase()
+    if (ext === 'jpg'){
+	ext = 'jpeg'
+    }
+    $.ajax({
+	type : 'POST', async : true,
+	contentType: "image/"+ext, processData: false,
+	error : errFunc, url : "img",
+	beforeSend: checkIfImg,
+	headers: {
+	    'name': name
+	},
+	data : imgData, success : appendToMsgBox
+    });
+}
+
+//were using this dubl now..
+//check if user has selected an image for uploading
+function checkIfImg(){
+    return $("#imgInput")[0].files.length > 0
 }

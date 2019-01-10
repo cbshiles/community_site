@@ -26,12 +26,17 @@ return date.toLocaleTimeString("en-us", options);
 
 function refineMsg(val){
 
-    var val = val.trim()
+    val = val.trim()
     if (val == "") return ""
 
-    var addHttp = (!/^(f|ht)tps?:\/\//i.test(val))
-    val = val.replace(/~~(([^\. ]+\.)?[^\. ]+\.[A-Za-z]+(\/[^ ]*)?)/, "<a href=\""+(addHttp?'http://':'')+"$1\">$1</a>")
-    
+    let linkRegex = /~~(([^\. ]+\.)?[^\. ]+\.[A-Za-z]+(\/[^ ]*)?)/g
+    let match
+    while (match = linkRegex.exec(val)){
+	let m = match[1] // [1] is the capture group, [0] is the entire match
+	var addHttp = (!/^(f|ht)tps?:\/\//i.test(m))
+	val = val.replace(match[0], "<a href=\""+(addHttp?'http://':'')+m+"\">"+m+"</a>")
+    }
+
     var msg = '<div class="post postorange">'
     	+'<p class="timeStamp">'+dateStr()+' </p> '
     	+val.replace(/\n/g, "<br>")

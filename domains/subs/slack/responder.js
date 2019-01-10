@@ -126,25 +126,24 @@ postObj = {
     },
 
     img: function(req, res){
-	console.log('loggogo')
 	req.setEncoding('binary')
+
+	if (req.headers['content-length'] > 5e6){ //5 MB
+	    res.end('File too large!')
+	    return
+	}
+	
 	var data = ''
 	req.on('data', function(chunk) {
-	    console.log('data  is on '+ typeof chunk)
 	    data += chunk
 	}).on('end', function() {
-
-	    if (req.headers['content-length'] < 50e6){ //50 MB
-		var fname = req.headers['name']
-		console.log('Uploading image '+fname+' of type '+req.headers['content-type'])
-		var path = __dirname+'/res/'+req.headers['name']
-		var regex64 = new RegExp('^data:'+req.headers['content-type']+';base64,')
-		data = new Buffer(data.replace(regex64, ''), 'base64')
-		fs.writeFileSync(path, data, 'binary')
-		res.end('<img src="'+fname+'" max-width="100%">')
-	    } else {
-		res.end('File too large!')
-	    }
+	    var fname = req.headers['name']
+	    console.log('Uploading image '+fname+' of type '+req.headers['content-type'])
+	    var path = __dirname+'/res/'+req.headers['name']
+	    var regex64 = new RegExp('^data:'+req.headers['content-type']+';base64,')
+	    data = new Buffer(data.replace(regex64, ''), 'base64')
+	    fs.writeFileSync(path, data, 'binary')
+	    res.end('<img src="'+fname+'">')
 	})
 
     }

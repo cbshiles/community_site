@@ -1,8 +1,8 @@
 html, body {
     height: 100%;
     margin: 0px;
-    background-image: url("mandala5.jpg");
-    background-size: 100px 99px;
+    background-image: url("bob-tile-0.png");
+    background-size: 33% 33%;
     background-repeat: repeat;  
     font-weight: bold;
     overflow: hidden;
@@ -42,6 +42,31 @@ h1 {
     border-radius: 60px;
     height: 120px;
 }
+
+.early-bird {
+    position: absolute;
+    -webkit-animation:spin 5s linear 1 forwards;
+    -moz-animation:spin 5s linear 1 forwards;
+    animation:spin 5s linear 1 forwards;
+}
+
+/* @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+   @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+   @keyframes spin {
+   25% { -webkit-transform: rotate(0deg); transform:rotate(0deg);  }
+   50% { -webkit-transform: rotate(180deg); transform:rotate(180deg);  }
+   75% { top:325px; }
+   100% { top: 1200px; }
+   }
+
+   @keyframes example {
+   0%   {background-color:red; left:0px; top:0px;}
+   25%  {background-color:yellow; left:200px; top:0px;}
+   50%  {background-color:blue; left:200px; top:200px;}
+   75%  {background-color:green; left:0px; top:200px;}
+   100% {background-color:red; left:0px; top:0px;}
+   } */
+
 
 .side {
     height:75%;
@@ -193,8 +218,8 @@ margin-top: auto;
 } /* Yellow */
 
 @media only screen and (min-width: 768px) {
-html, body {
-    background-size: 200px 198px;
+    html, body {
+     background-size: 25% 25%;
 }
 
 .mobileHide {

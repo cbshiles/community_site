@@ -29,7 +29,7 @@ function refineMsg(val){
     val = val.trim()
     if (val == "") return ""
 
-    let linkRegex = /~~(([^\. ]+\.)?[^\. ]+\.[A-Za-z]+(\/[^ ]*)?)/g
+    let linkRegex = /~~(([^\.\s]+\.)?[^\.\s]+\.[A-Za-z]+([\/#?&][^\s]*)?)/g
     let match
     while (match = linkRegex.exec(val)){
 	let m = match[1] // [1] is the capture group, [0] is the entire match

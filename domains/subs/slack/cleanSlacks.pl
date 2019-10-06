@@ -1,6 +1,5 @@
 #!/usr/local/bin/perl
-#This script need work!
-#keeps emacs processes open? and doesnt account for the fact that the #s might not start @ 1
+#When using, make sure to close editor
 use strict;
 use warnings;
 
@@ -11,16 +10,20 @@ my $go2 = $ARGV[0];
 my $dir = '/home/brenan/community_site/domains/subs/slack/slacks';
 opendir(DIR, $dir) or die $!;
 
-my $n = 0;
+my @fileNums = ();
 while (my $file = readdir(DIR)) {
         # Use a regular expression to ignore files beginning with a period
     next if ($file =~ m/^\./);
-    $n++;
+    my @f = split('\.', $file);
+    push (@fileNums, $f[0]); #add file number to array (5.txt -> 5)
 }
 closedir(DIR);
 
+my @sortedNums = reverse sort { $a <=> $b } @fileNums;
+
 #write file
-my $wf = $dir.'/'.($n - $go2 - 1).".txt";
+my $fNum = $sortedNums[$go2];
+my $wf = $dir.'/'.$fNum.".txt";
 my $ef = "/tmp/blah";
 print "$wf";
 

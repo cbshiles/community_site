@@ -132,15 +132,6 @@ $(document).on("click", "#imgButton", function () {
     }
 })
 
-$(document).ready(function () {
-$('#tbox').keydown(function(e) {
-   var code = e.keyCode || e.which;
-   if(e.ctrlKey && code == 13) { 
-   	send(refineMsg)
-    }
-})
-})
-
 // enableEnter is accessible in the whole page scope.
 function enableEnter(event) {
     if (event.keyCode == 13) {
@@ -177,3 +168,97 @@ function uploadImage(imgData, name){
 function checkIfImg(){
     return $("#imgInput")[0].files.length > 0
 }
+
+function euler6(end){
+    let x=0, sum=0, i=1;
+    while (i <= end){
+	x += i*sum;
+	sum += i++;
+    }
+    return 2*x;
+}
+
+function euler31(total, coins){
+    let count = 0;
+    function inner(amt, i){
+	if (amt == total)
+	    count++;
+	else if (amt < total){
+	    for(let j=i; j<coins.length; j++)
+		inner(amt+coins[j], j);
+	}
+    }
+    inner(0, 0);
+    return count;
+}
+function getLevel(n){
+    let x = Math.pow(10, n-1);
+    return{'bot':x, 'top':x*10-1, 'num':9*x*n,
+           'fun': function(d){
+               return (this.bot+Math.floor(d/n)).toString()[d%n]
+           }
+    };
+}
+
+function fn(d){
+    let n=1;
+    d--;
+    while(1){
+	let z = Math.pow(10, n-1);
+	let n9z = n*9*z;
+        if (d < n9z){
+            return (z+Math.floor(d/n)).toString()[d%n]
+        }
+        d -= n9z;
+        n++;
+    }
+}
+
+function testIt()
+{
+    let i=0, ans=''
+    while (i < 300){
+        ans += fn(i++)
+    }
+    console.log(ans)
+}
+
+function runIt()
+{
+    let i=1, ans=1;
+    while (i <= 1000000){
+        let p = fn(i);
+        console.log(p+'!')
+        ans *= p;
+        i *= 10;
+    }
+    console.log(ans);
+}
+
+function bobFresh(){
+    if(! $('#msg').val().trim()){
+	window.location = window.location.href;
+    }
+}
+
+function repeatTimer(fn, time){
+    frist = true
+    function funk(){
+	if(!frist) fn();	
+	frist = false
+	window.setTimeout(funk, time);
+    }
+    funk();
+}
+
+$(document).ready(function () {
+    $('#tbox').keydown(function(e) {
+	var code = e.keyCode || e.which;
+	if(e.ctrlKey && code == 13) { 
+   	    send(refineMsg)
+	}
+    })
+
+    repeatTimer(bobFresh, 67*1000);
+    $('#msg').focus().select();
+})

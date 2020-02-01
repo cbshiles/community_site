@@ -61,7 +61,7 @@ var MAX_CHARS = 1024*24
 var slackDir = __dirname+'/slacks/'
 
 if (count == 0) {first = 0; newFile()}
-console.log("fill: "+filer(count+first-1))
+//console.log("fill: "+filer(count+first-1))
 var fill = bytesIn(filer(count+first-1))
 
 function addText(msg){
@@ -88,7 +88,7 @@ function newFile(){
 }
 
 function flip(str){
-    return str.split('').reverse().join('')
+    return Array.from(str).reverse().join('')
 }
 
 function slacker(num, res){

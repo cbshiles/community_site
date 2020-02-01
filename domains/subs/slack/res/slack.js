@@ -10,7 +10,11 @@ function connectSuccess(){
 }
 
 function flip(str){
-    return str.split('').reverse().join('')
+    //console.log(str.split(''))
+    //x=str.split('').reverse().join('')
+    x=Array.from(str).reverse().join('')
+    console.log(x)
+    return x
 }
 
 function dateStr(){
@@ -29,7 +33,7 @@ function refineMsg(val){
     val = val.trim()
     if (val == "") return ""
 
-    let linkRegex = /~~(([^\.\s]+\.)?[^\.\s]+\.[A-Za-z]+([\/#?&][^\s]*)?)/g
+    let linkRegex = /~~(([^\.\s]+\.)*[^\.\s]+\.[A-Za-z]+([\/#?&][^\s]*)?)/g
     let match
     while (match = linkRegex.exec(val)){
 	let m = match[1] // [1] is the capture group, [0] is the entire match
@@ -107,10 +111,11 @@ function send(refineFn){
    document.getElementById("transmit").disabled = true
    document.getElementById("nsfwTransmit").disabled = true
 
+    //console.log(m)
     $.ajax ({
-      type : 'POST', async : true,
-      error : errFunc, url : "post",
-      data : m, success : connectSuccess
+	type : 'POST', async : true,
+	error : errFunc, url : "post",
+	data : m, success : connectSuccess
     })
 }
 
@@ -259,6 +264,6 @@ $(document).ready(function () {
 	}
     })
 
-    repeatTimer(bobFresh, 67*1000);
+    repeatTimer(bobFresh, 67*3*1000);
     $('#msg').focus().select();
 })

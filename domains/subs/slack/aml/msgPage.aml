@@ -15,12 +15,12 @@ head<
 body<
  div[id="scrollBox"]<
   div[id="header" class="postorange"]<
-   img[class="side up" src="LBobdobbs.png"]
+   a[href="/slack2"]< img[class="side up" src="LBobdobbs.png"] >
    span[id="center"]< 
     h1<Welcome to the House of Slack!>
     h2[class="mobileHide"]<Take your feet off, enjoy the ride.>
     p[class="mobileHide"]<a[href="aboutHtml.html"]<SLACK on HTML>>>
-   img[class="side down" src="RBobdobbs.png"]
+   a[href="/slack2"]< img[class="side down" src="RBobdobbs.png"] >
   >
   `messages`
  >

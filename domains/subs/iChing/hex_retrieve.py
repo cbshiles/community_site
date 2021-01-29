@@ -31,6 +31,7 @@ trigrams = ['kun', 'chen', 'kan', 'tui', 'ken', 'li', 'sun', 'chien']
 import os 
 dir_path = os.path.dirname(os.path.realpath(__file__))    
 
+#The 'id' array contains the King Wen sequence
 id=[]    
 with open(dir_path+'/hex_map.t') as f:
   for ln in f.readlines():
@@ -79,21 +80,35 @@ def Ancient_Yarrow():
     remain = 0
   return lzt
 
-# ! # ! # !
-# ! # ! # ! Need to hook count to binate, change count as needed
-# ! # ! # ! Right now its looking up by actual value, does it need to use lookup table?
-# ! # ! # !
-
 def binate(x):
-        n = 32
-        lzt = []
-        while n > 0:
-                q = x // n
-                lzt.append(q)
-                x -= n*q
-                n //= 2
-        return lzt
+  n = 32
+  lzt = []
+  while n > 0:
+    q = x // n
+    lzt.append(q)
+    x -= n*q
+    n //= 2
+  return lzt
 
+def orderOfDiff(h1, h2):
+  b1 = binate(h1)
+  b2 = binate(h2)
+  c = 0
+  for i in range(6):
+    if b1[i] != b2[i]:
+      c += 1
+  return c
+
+def numParts(h):
+  b = binate(h)
+  c = 1
+  v = b[0]
+  for i in range(5):
+    if v != b[1+i]:
+      v = b[1+i]
+      c += 1
+  return c
+  
 class Hex_Page:
 
   def __init__(self, text, num):
@@ -179,8 +194,20 @@ class Hex:
 #with open('hexPages/out.html', 'w') as out:
 #  out.write(getPage(Hex(Ancient_Yarrow())))
 
+#! Put this back on!
 print(getPage(Hex(Ancient_Yarrow())).encode('ascii', errors='xmlcharrefreplace').decode())
 
 #have a method that takes a hex and returns a tuple contained the numerical values for top and bottom trigram
 #add pictures into html page, as well as the hexagram the original changes into  
-  
+
+# print(numParts(0))
+# print(numParts(63))
+
+# for i in range(64):
+#  print(str(numParts(id[i]))+' '+str(id[i]))
+  # print(orderOfDiff(id[i], id[i+1]), end=' ')
+  #print(binate(id[2*i]))
+  #print(str(id[2*i])+' - '+str(id[2*i+1]))
+
+#def getID(hex):
+#orderOfDiff(h1, h2):

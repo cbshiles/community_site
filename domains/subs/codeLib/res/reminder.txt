@@ -1,5 +1,0 @@
-Remember to turn the
- in
- program diff to returen string
- as
- opposed to calling print directly   

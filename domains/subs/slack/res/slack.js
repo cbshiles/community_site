@@ -264,6 +264,22 @@ $(document).ready(function () {
 	}
     })
 
-    repeatTimer(bobFresh, 67*3*1000);
+    //repeatTimer(bobFresh, 67*3*1000);
     $('#msg').focus().select();
+    
 })
+
+function avg(amounts){
+    let sum = 0;
+    for (var name of Object.keys(amounts)) {
+	sum += amounts[name];
+    }
+    let psum = 0;
+    for (var name of Object.keys(amounts)) {
+	let amt = amounts[name];
+	let p = Math.round(1000000*amt/sum)/10000;
+	console.log(name+'('+amt+'): '+p+'%');
+	psum += p;
+    }
+    console.log('Total('+sum+'): '+psum+'%');	    
+}

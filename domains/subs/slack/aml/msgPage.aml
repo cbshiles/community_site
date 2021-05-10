@@ -3,9 +3,9 @@
 html<
 |<!-- The perl translator is officially working! -->|
 head< 
-  title<SLACK>
+  title<paul>
   meta [charset="UTF-8"]
-  meta [name="viewport" content="width=450, initial-scale=1.0"]
+  meta [name="viewport" content="width=device-width, initial-scale=1.0"]
   		
   link[rel="stylesheet" type="text/css" href="praiseBob.css"]
   script[type="text/javascript" src="/jquery-3.1.1.js"]<>
@@ -17,7 +17,7 @@ body<
   div[id="header" class="postorange"]<
    a[href="/slack2"]< img[class="side up" src="LBobdobbs.png"] >
    span[id="center"]< 
-    h1<Welcome to the House of Slack!>
+    h1<Not the Actual Title>
     h2[class="mobileHide"]<Take your feet off, enjoy the ride.>
     p[class="mobileHide"]<a[href="aboutHtml.html"]<SLACK on HTML>>>
    a[href="/slack2"]< img[class="side down" src="RBobdobbs.png"] >
